@@ -1,5 +1,5 @@
 #include <gpg/plot.h>
-
+#include <boost/thread/thread.hpp>
 
 void Plot::plotFingers3D(const std::vector<GraspSet>& hand_set_list, const PointCloudRGBA::Ptr& cloud,
   std::string str, double outer_diameter, double finger_width, double hand_depth, double hand_height) const

@@ -11,6 +11,12 @@ include_directories(${PCL_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
+# Boost
+find_package(Boost REQUIRED COMPONENTS thread)
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIRS})
+add_definitions(-DBOOST_ALL_DYN_LINK)
+
 ## Set compiler optimization flags
 set(CMAKE_CXX_FLAGS "-O3 -fopenmp -fPIC -Wno-deprecated -Wenum-compare")
 # set(CMAKE_CXX_FLAGS "-O3 -fopenmp -march=native -mfpmath=sse -funroll-loops -fPIC -Wno-deprecated -Wenum-compare") # no improvement
@@ -86,6 +92,8 @@ target_link_libraries(${PROJECT_NAME}_grasp_candidates_generator
                       
 target_link_libraries(${PROJECT_NAME}_point_list 
                       ${PROJECT_NAME}_eigen_utils)
+                      
+target_link_libraries(${PROJECT_NAME}_grasp_candidates_generator ${Boost_LIBRARIES})
 
 
 # Rename executable.
